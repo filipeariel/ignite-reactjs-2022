@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  padding: 2rem 0;
+  position: sticky;
+  top: 0;
+
+  padding: 2rem 10rem;
+
+  background-color: ${(props) => props.theme["gray-100"]};
 
   nav {
     display: flex;
