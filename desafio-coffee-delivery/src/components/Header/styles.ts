@@ -37,11 +37,30 @@ export const HeaderContainer = styled.header`
     }
 
     div > a {
+      position: relative;
       padding: 0.5rem;
       border-radius: 8px;
 
       color: ${(props) => props.theme["yellow-700"]};
       background-color: ${(props) => props.theme["yellow-200"]};
+
+      span {
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: ${(props) => props.theme.white};
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 1.5rem;
+        width: 1.5rem;
+        position: absolute;
+        top: -0.625rem;
+        right: -0.625rem;
+        border-radius: 50%;
+        background-color: ${(props) => props.theme["yellow-700"]};
+      }
     }
   }
 `;

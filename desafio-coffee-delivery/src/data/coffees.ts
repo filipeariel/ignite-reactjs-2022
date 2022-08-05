@@ -5,7 +5,7 @@ export const coffeeTypes = [
     name: "Expresso Tradicional",
     description: "O tradicional café feito com água quente e grãos moídos",
     price: 9.9,
-    img: "../public/coffeeImgs/expresso.svg",
+    img: "../coffeeImgs/expresso.svg",
     quantity: 1,
   },
   {
@@ -14,7 +14,7 @@ export const coffeeTypes = [
     name: "Expresso Americano",
     description: "Expresso diluído, menos intenso que o tradicional",
     price: 9.9,
-    img: "../public/coffeeImgs/americano.svg",
+    img: "../coffeeImgs/americano.svg",
     quantity: 1,
   },
   {
@@ -23,7 +23,7 @@ export const coffeeTypes = [
     name: "Expresso Cremoso",
     description: "Café expresso tradicional com espuma cremosa",
     price: 9.9,
-    img: "../public/coffeeImgs/expresso-cremoso.svg",
+    img: "../coffeeImgs/expresso-cremoso.svg",
     quantity: 1,
   },
   {
@@ -32,7 +32,7 @@ export const coffeeTypes = [
     name: "Expresso Gelado",
     description: "Bebida preparada com café expresso e cubos de gelo",
     price: 9.9,
-    img: "../public/coffeeImgs/gelado.svg",
+    img: "../coffeeImgs/gelado.svg",
     quantity: 1,
   },
   {
@@ -41,7 +41,7 @@ export const coffeeTypes = [
     name: "Café com Leite",
     description: "Meio a meio de expresso tradicional com leite vaporizado",
     price: 9.9,
-    img: "../public/coffeeImgs/com-leite.svg",
+    img: "../coffeeImgs/com-leite.svg",
     quantity: 1,
   },
   {
@@ -51,7 +51,7 @@ export const coffeeTypes = [
     description:
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
     price: 9.9,
-    img: "../public/coffeeImgs/latte.svg",
+    img: "../coffeeImgs/latte.svg",
     quantity: 1,
   },
   {
@@ -61,7 +61,7 @@ export const coffeeTypes = [
     description:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
     price: 9.9,
-    img: "../public/coffeeImgs/capuccino.svg",
+    img: "../coffeeImgs/capuccino.svg",
     quantity: 1,
   },
   {
@@ -71,7 +71,7 @@ export const coffeeTypes = [
     description:
       "Café expresso misturado com um pouco de leite quente e espuma",
     price: 9.9,
-    img: "../public/coffeeImgs/macchiato.svg",
+    img: "../coffeeImgs/macchiato.svg",
     quantity: 1,
   },
   {
@@ -80,7 +80,7 @@ export const coffeeTypes = [
     name: "Mocaccino",
     description: "Café expresso com calda de chocolate, pouco leite e espuma",
     price: 9.9,
-    img: "../public/coffeeImgs/mocaccino.svg",
+    img: "../coffeeImgs/mocaccino.svg",
     quantity: 1,
   },
   {
@@ -89,7 +89,7 @@ export const coffeeTypes = [
     name: "Chocolate Quente",
     description: "Bebida feita com chocolate dissolvido no leite quente e café",
     price: 9.9,
-    img: "../public/coffeeImgs/chocolate-quente.svg",
+    img: "../coffeeImgs/chocolate-quente.svg",
     quantity: 1,
   },
   {
@@ -99,7 +99,7 @@ export const coffeeTypes = [
     description:
       "Drink gelado de café expresso com rum, creme de leite e hortelã",
     price: 9.9,
-    img: "../public/coffeeImgs/cubano.svg",
+    img: "../coffeeImgs/cubano.svg",
     quantity: 1,
   },
   {
@@ -108,7 +108,7 @@ export const coffeeTypes = [
     name: "Havaiano",
     description: "Bebida adocicada preparada com café e leite de coco",
     price: 9.9,
-    img: "../public/coffeeImgs/havaiano.svg",
+    img: "../coffeeImgs/havaiano.svg",
     quantity: 1,
   },
   {
@@ -117,7 +117,7 @@ export const coffeeTypes = [
     name: "Árabe",
     description: "Bebida preparada com grãos de café árabe e especiarias",
     price: 9.9,
-    img: "../public/coffeeImgs/arabe.svg",
+    img: "../coffeeImgs/arabe.svg",
     quantity: 1,
   },
   {
@@ -126,7 +126,7 @@ export const coffeeTypes = [
     name: "Irlandês",
     description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
     price: 9.9,
-    img: "../public/coffeeImgs/irlandes.svg",
+    img: "../coffeeImgs/irlandes.svg",
     quantity: 1,
   },
 ];

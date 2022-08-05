@@ -115,11 +115,14 @@ export const CoffeeCardContainer = styled.div`
       button {
         border: none;
         background-color: ${(props) => props.theme["gray-400"]};
-      }
 
-      svg {
         cursor: pointer;
-        color: ${(props) => props.theme["purple-700"]};
+        color: ${(props) => props.theme["purple-500"]};
+
+        &:hover {
+          color: ${(props) => props.theme["purple-700"]};
+          transition: color 0.2s;
+        }
       }
     }
 
@@ -134,18 +137,11 @@ export const CoffeeCardContainer = styled.div`
       border-radius: 8px;
       border: none;
       cursor: pointer;
-    }
-    /* & > div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+
+      &:hover {
+        background-color: ${(props) => props.theme["purple-500"]};
+        transition: background-color 0.2s;
       }
-
-      
-
-        
-        }
-      } */
+    }
   }
 `;

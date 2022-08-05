@@ -1,40 +1,13 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { CoffeeCardContainer, CoffeesContainer } from "./styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { coffeeTypes } from "../../../data/coffees";
-
-interface SelectedCoffees {
-  id: number;
-  name: string;
-  quantity: number;
-  price: number;
-  img: string;
-}
+import { SelectedCoffeesContext } from "../../../contexts/SelectedCoffeesContext";
 
 export function CoffeeCard() {
+  const { ShopCoffee } = useContext(SelectedCoffeesContext);
+
   const [coffees, setCoffees] = useState(coffeeTypes);
-  const [selectedCoffees, setSelectesCoffees] = useState<SelectedCoffees[]>([]);
-
-  function handleShopCoffee(coffee: SelectedCoffees) {
-    if (!selectedCoffees.find((o) => o.id === coffee.id)) {
-      setSelectesCoffees([...selectedCoffees, coffee]);
-    } else {
-      setSelectesCoffees(
-        selectedCoffees.map((selectedCoffee) => {
-          if (selectedCoffee.id === coffee.id)
-            return {
-              ...selectedCoffee,
-              quantity: selectedCoffee.quantity + coffee.quantity,
-            };
-          return selectedCoffee;
-        })
-      );
-    }
-  }
-
-  console.log(selectedCoffees);
-
-  console.log(coffees);
 
   function handleIncreaseCoffeeQuantity(coffeeId: Number) {
     setCoffees((state) =>
@@ -85,28 +58,21 @@ export function CoffeeCard() {
                   R$ <strong>9,90</strong>
                 </span>
                 <div>
-                  <button>
-                    <Minus
-                      size={14}
-                      weight="fill"
-                      onClick={() => handleDecreaseCoffeeQuantity(coffee.id)}
-                    />
+                  <button
+                    disabled={coffee.quantity === 1}
+                    onClick={() => handleDecreaseCoffeeQuantity(coffee.id)}
+                  >
+                    <Minus size={14} weight="fill" />
                   </button>
                   <input type="number" readOnly value={coffee.quantity} />
-                  <button>
-                    <Plus
-                      size={14}
-                      weight="fill"
-                      onClick={() => handleIncreaseCoffeeQuantity(coffee.id)}
-                    />
+                  <button
+                    onClick={() => handleIncreaseCoffeeQuantity(coffee.id)}
+                  >
+                    <Plus size={14} weight="fill" />
                   </button>
                 </div>
-                <button>
-                  <ShoppingCart
-                    size={22}
-                    weight="fill"
-                    onClick={() => handleShopCoffee(coffee)}
-                  />
+                <button onClick={() => ShopCoffee(coffee)}>
+                  <ShoppingCart size={22} weight="fill" />
                 </button>
               </div>
             </CoffeeCardContainer>
