@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const OrderInputContainer = styled.div`
+  width: 55%;
+
   span {
     font-family: "Baloo 2";
     font-weight: bold;
@@ -13,7 +15,6 @@ export const OrderInputContainer = styled.div`
     padding: 2.5rem;
     background-color: ${(props) => props.theme["gray-200"]};
     border-radius: 6px;
-    width: 55%;
 
     display: flex;
     flex-direction: column;
@@ -48,7 +49,7 @@ export const FormContainer = styled.form`
   display: grid;
   max-width: 100%;
   margin: 2rem 0 0;
-  grid-template-columns: 10.5rem 14.5rem auto;
+  grid-template-columns: 10.5rem 14.5rem 2.8rem;
   gap: 1rem 0.75rem;
   grid-auto-flow: dense;
 
@@ -63,11 +64,18 @@ export const FormContainer = styled.form`
     max-width: 10.5rem;
     height: 100%;
 
+    > span {
+      color: #ff0000;
+    }
+
     div {
       border: 1px solid ${(props) => props.theme["gray-400"]};
       border-radius: 4px;
       background-color: ${(props) => props.theme["gray-300"]};
 
+      &.required {
+        border: 1px solid #ff0000;
+      }
       :focus-within {
         border: 1px solid ${(props) => props.theme["yellow-700"]};
         transition: border 0.4s;
@@ -79,10 +87,18 @@ export const FormContainer = styled.form`
     grid-column: span 3 / auto;
     height: 100%;
 
+    > span {
+      color: #ff0000;
+    }
+
     div {
       border: 1px solid ${(props) => props.theme["gray-400"]};
       border-radius: 4px;
       background-color: ${(props) => props.theme["gray-300"]};
+
+      &.required {
+        border: 1px solid #ff0000;
+      }
 
       :focus-within {
         border: 1px solid ${(props) => props.theme["yellow-700"]};
@@ -95,10 +111,18 @@ export const FormContainer = styled.form`
     grid-column: span 1 / auto;
     height: 100%;
 
+    > span {
+      color: #ff0000;
+    }
+
     div {
       border: 1px solid ${(props) => props.theme["gray-400"]};
       border-radius: 4px;
       background-color: ${(props) => props.theme["gray-300"]};
+
+      &.required {
+        border: 1px solid #ff0000;
+      }
 
       :focus-within {
         border: 1px solid ${(props) => props.theme["yellow-700"]};
@@ -132,10 +156,18 @@ export const FormContainer = styled.form`
     grid-column: span 1 / auto;
     height: 100%;
 
+    > span {
+      color: #ff0000;
+    }
+
     div {
       border: 1px solid ${(props) => props.theme["gray-400"]};
       border-radius: 4px;
       background-color: ${(props) => props.theme["gray-300"]};
+
+      &.required {
+        border: 1px solid #ff0000;
+      }
 
       :focus-within {
         border: 1px solid ${(props) => props.theme["yellow-700"]};
@@ -148,10 +180,18 @@ export const FormContainer = styled.form`
     grid-column: span 1 / auto;
     height: 100%;
 
+    > span {
+      color: #ff0000;
+    }
+
     div {
       border: 1px solid ${(props) => props.theme["gray-400"]};
       border-radius: 4px;
       background-color: ${(props) => props.theme["gray-300"]};
+
+      &.required {
+        border: 1px solid #ff0000;
+      }
 
       :focus-within {
         border: 1px solid ${(props) => props.theme["yellow-700"]};
@@ -163,11 +203,20 @@ export const FormContainer = styled.form`
   div.uf {
     grid-column: span 1 / auto;
     height: 100%;
+    width: 10rem;
+
+    > span {
+      color: #ff0000;
+    }
 
     div {
       border: 1px solid ${(props) => props.theme["gray-400"]};
       border-radius: 4px;
       background-color: ${(props) => props.theme["gray-300"]};
+
+      &.required {
+        border: 1px solid #ff0000;
+      }
 
       :focus-within {
         border: 1px solid ${(props) => props.theme["yellow-700"]};
@@ -177,7 +226,6 @@ export const FormContainer = styled.form`
   }
 
   input {
-    width: 100%;
     border: none;
     background-color: transparent;
     font-size: 0.875rem;
@@ -204,10 +252,17 @@ export const PaymentContainer = styled.div`
   padding: 2.5rem;
   background-color: ${(props) => props.theme["gray-200"]};
   border-radius: 6px;
-  width: 55%;
 
   display: flex;
   flex-direction: column;
+
+  span.missing-method {
+    margin-top: 0.5rem;
+    color: #ff0000;
+    font-family: "Roboto";
+    font-weight: normal;
+    font-size: 0.875rem;
+  }
 
   & > div:first-of-type {
     display: flex;
@@ -235,11 +290,12 @@ export const PaymentContainer = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap: 0.5rem;
 
     button {
       display: flex;
       align-items: center;
-      padding: 1rem;
+      padding: 1rem 0.5rem;
       gap: 0.5rem;
 
       color: ${(props) => props.theme["gray-700"]};

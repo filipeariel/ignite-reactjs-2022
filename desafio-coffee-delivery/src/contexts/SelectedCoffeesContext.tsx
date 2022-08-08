@@ -1,4 +1,19 @@
-import { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
+import * as zod from "zod";
+
+const customerInformationFormValidationSchema = zod.object({
+  cep: zod.string().min(1, "Informe o CEP"),
+  number: zod.string().min(1, "Informe o número"),
+  city: zod.string().min(1, "Informe a cidade"),
+  complement: zod.string().optional(),
+  street: zod.string().min(1, "Informe a rua"),
+  neighborhood: zod.string().min(1, "Informe o bairro"),
+  uf: zod.string().min(1, "Informe a UF"),
+});
+
+type CustomerInformationFormData = zod.infer<
+  typeof customerInformationFormValidationSchema
+>;
 
 interface SelectedCoffees {
   id: number;
@@ -11,6 +26,11 @@ interface SelectedCoffees {
 interface SelectedCoffeesContextType {
   selectedCoffees: SelectedCoffees[] | undefined;
   ShopCoffee: (coffee: SelectedCoffees) => void;
+  setSelectesCoffees: React.Dispatch<React.SetStateAction<SelectedCoffees[]>>;
+  formData: CustomerInformationFormData | undefined;
+  includeFormData: (formData: CustomerInformationFormData) => void;
+  paymentMethod: string;
+  setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SelectedCoffeesContext = createContext(
@@ -25,6 +45,12 @@ export function SelectedCoffeesContextProvider({
   children,
 }: SelectedCoffeesContextProviderPros) {
   const [selectedCoffees, setSelectesCoffees] = useState<SelectedCoffees[]>([]);
+  const [formData, setFormData] = useState<CustomerInformationFormData>();
+  const [paymentMethod, setPaymentMethod] = useState("");
+
+  function includeFormData(formData: CustomerInformationFormData) {
+    setFormData(formData);
+  }
 
   function ShopCoffee(coffee: SelectedCoffees) {
     if (
@@ -50,6 +76,11 @@ export function SelectedCoffeesContextProvider({
       value={{
         selectedCoffees,
         ShopCoffee,
+        setSelectesCoffees,
+        includeFormData,
+        formData,
+        paymentMethod,
+        setPaymentMethod,
       }}
     >
       {children}

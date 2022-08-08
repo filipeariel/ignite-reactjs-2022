@@ -83,10 +83,10 @@ export const CoffeeCardContainer = styled.div`
       padding: 0.5rem;
       background-color: ${(props) => props.theme["gray-400"]};
       width: 100%;
-      justify-content: center;
       border-radius: 6px;
 
       display: flex;
+      justify-content: center;
       align-items: center;
 
       input {

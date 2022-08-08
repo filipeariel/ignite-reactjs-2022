@@ -9,12 +9,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
 import { FormContainer, OrderInputContainer, PaymentContainer } from "./styles";
-import React, {
-  ChangeEvent,
-  ReactHTML,
-  ReactHTMLElement,
-  useState,
-} from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SelectedCoffeesContext } from "../../../contexts/SelectedCoffeesContext";
 
 const customerInformationFormValidationSchema = zod.object({
   cep: zod.string().min(1, "Informe o CEP"),
@@ -31,8 +28,12 @@ type CustomerInformationFormData = zod.infer<
 >;
 
 export function OrderInput() {
-  const [formData, setFormData] = useState<CustomerInformationFormData>();
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const { includeFormData, paymentMethod, setPaymentMethod } = useContext(
+    SelectedCoffeesContext
+  );
+  const [isPaymentMethodEmpty, setisPaymentMethodEmpty] = useState(false);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -44,13 +45,19 @@ export function OrderInput() {
   });
 
   function handleCustomerInformation(data: CustomerInformationFormData) {
-    setFormData(data);
+    if (paymentMethod === "") {
+      setisPaymentMethodEmpty(true);
+    } else {
+      includeFormData(data);
+      navigate("../success");
+    }
   }
 
   function handlePaymentMethod(event: any) {
     const { name } = event.target;
 
     setPaymentMethod(name);
+    setisPaymentMethodEmpty(false);
     console.log(paymentMethod);
   }
 
@@ -72,7 +79,7 @@ export function OrderInput() {
           action=""
         >
           <div className="cep">
-            <div>
+            <div className={errors.cep ? "required" : ""}>
               <input
                 type="number"
                 id="cep"
@@ -81,11 +88,11 @@ export function OrderInput() {
                 {...register("cep")}
               />
             </div>
-            <span>Informe o CEP</span>
+            {errors.cep && <span>{errors.cep.message}</span>}
           </div>
 
           <div className="street">
-            <div>
+            <div className={errors.street ? "required" : ""}>
               <input
                 type="text"
                 id="street"
@@ -93,10 +100,10 @@ export function OrderInput() {
                 {...register("street")}
               />
             </div>
-            <span>Informe a rua</span>
+            {errors.street && <span>{errors.street.message}</span>}
           </div>
           <div className="number">
-            <div>
+            <div className={errors.number ? "required" : ""}>
               <input
                 type="number"
                 id="number"
@@ -104,7 +111,7 @@ export function OrderInput() {
                 {...register("number")}
               />
             </div>
-            <span>Informe o número</span>
+            {errors.number && <span>{errors.number.message}</span>}
           </div>
           <div className="complement">
             <div>
@@ -118,7 +125,7 @@ export function OrderInput() {
             <p>Opcional</p>
           </div>
           <div className="neighborhood">
-            <div>
+            <div className={errors.neighborhood ? "required" : ""}>
               <input
                 type="text"
                 id="neighborhood"
@@ -126,10 +133,10 @@ export function OrderInput() {
                 {...register("neighborhood")}
               />
             </div>
-            <span>Informe o bairro</span>
+            {errors.neighborhood && <span>{errors.neighborhood.message}</span>}
           </div>
           <div className="city">
-            <div>
+            <div className={errors.city ? "required" : ""}>
               <input
                 type="text"
                 id="city"
@@ -137,13 +144,19 @@ export function OrderInput() {
                 {...register("city")}
               />
             </div>
-            <span>Informe a cidade</span>
+            {errors.city && <span>{errors.city.message}</span>}
           </div>
           <div className="uf">
-            <div>
-              <input type="text" id="uf" placeholder="UF" {...register("uf")} />
+            <div className={errors.uf ? "required" : ""}>
+              <input
+                maxLength={2}
+                type="text"
+                id="uf"
+                placeholder="UF"
+                {...register("uf")}
+              />
             </div>
-            <span>Informe a UF</span>
+            {errors.uf && <span>{errors.uf.message}</span>}
           </div>
         </FormContainer>
       </div>
@@ -184,7 +197,6 @@ export function OrderInput() {
           <button
             className={`${paymentMethod === "Dinheiro" ? "selected" : ""}`}
             type="submit"
-            form="customer-information-input"
             name="Dinheiro"
             onClick={handlePaymentMethod}
           >
@@ -192,9 +204,9 @@ export function OrderInput() {
             Dinheiro
           </button>
         </div>
-        <h1>
-          {paymentMethod}, {formData?.city}
-        </h1>
+        {isPaymentMethodEmpty && (
+          <span className="missing-method">Escolha um método de pagamento</span>
+        )}
       </PaymentContainer>
     </OrderInputContainer>
   );

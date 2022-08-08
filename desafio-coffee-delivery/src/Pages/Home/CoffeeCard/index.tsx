@@ -55,7 +55,13 @@ export function CoffeeCard() {
               <p>{coffee.description}</p>
               <div>
                 <span>
-                  R$ <strong>9,90</strong>
+                  R${" "}
+                  <strong>
+                    {coffee.price.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </strong>
                 </span>
                 <div>
                   <button
