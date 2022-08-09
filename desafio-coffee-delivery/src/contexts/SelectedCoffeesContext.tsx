@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import * as zod from "zod";
 
 const customerInformationFormValidationSchema = zod.object({
@@ -44,9 +44,28 @@ interface SelectedCoffeesContextProviderPros {
 export function SelectedCoffeesContextProvider({
   children,
 }: SelectedCoffeesContextProviderPros) {
-  const [selectedCoffees, setSelectesCoffees] = useState<SelectedCoffees[]>([]);
+  const [selectedCoffees, setSelectesCoffees] = useState<SelectedCoffees[]>(
+    () => {
+      const storedSelectedCoffees = localStorage.getItem(
+        "@coffee-delivery:selected-coffees-state-1.0.0"
+      );
+      if (storedSelectedCoffees) {
+        return JSON.parse(storedSelectedCoffees);
+      }
+      return [];
+    }
+  );
   const [formData, setFormData] = useState<CustomerInformationFormData>();
   const [paymentMethod, setPaymentMethod] = useState("");
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(selectedCoffees);
+
+    localStorage.setItem(
+      "@coffee-delivery:selected-coffees-state-1.0.0",
+      stateJSON
+    );
+  }, [selectedCoffees]);
 
   function includeFormData(formData: CustomerInformationFormData) {
     setFormData(formData);

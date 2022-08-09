@@ -28,9 +28,12 @@ type CustomerInformationFormData = zod.infer<
 >;
 
 export function OrderInput() {
-  const { includeFormData, paymentMethod, setPaymentMethod } = useContext(
-    SelectedCoffeesContext
-  );
+  const {
+    includeFormData,
+    paymentMethod,
+    setPaymentMethod,
+    setSelectesCoffees,
+  } = useContext(SelectedCoffeesContext);
   const [isPaymentMethodEmpty, setisPaymentMethodEmpty] = useState(false);
 
   const navigate = useNavigate();
@@ -49,6 +52,7 @@ export function OrderInput() {
       setisPaymentMethodEmpty(true);
     } else {
       includeFormData(data);
+      setSelectesCoffees([]);
       navigate("../success");
     }
   }
@@ -58,7 +62,6 @@ export function OrderInput() {
 
     setPaymentMethod(name);
     setisPaymentMethodEmpty(false);
-    console.log(paymentMethod);
   }
 
   return (
