@@ -9,6 +9,8 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "keen-slider": "^6.8.5",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
